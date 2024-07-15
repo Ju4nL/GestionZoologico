@@ -23,7 +23,7 @@ public class InventarioFrameForm extends javax.swing.JFrame {
         return btnGuardar;
     }
 
-    public JComboBox<Area> getCbxCategoria() {
+    public JComboBox<Area> getCbxArea() {
         return cbxArea;
     }
 
