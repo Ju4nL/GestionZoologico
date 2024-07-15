@@ -16,6 +16,13 @@ public class PrincipalController {
     
     private void initControllers() {
         alimentosController = new AlimentosController(this);
-        principalFrame.getBtnAlimentos().addActionListener(e -> alimentosController.visible());
+        principalFrame.getBtnAlimentos().addActionListener(e -> {
+            principalFrame.setVisible(false); 
+            alimentosController.visible();
+        });
+    }
+    
+    public void showPrincipalFrame() {
+        principalFrame.setVisible(true);  
     }
 }

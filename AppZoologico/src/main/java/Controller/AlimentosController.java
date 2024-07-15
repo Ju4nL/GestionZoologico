@@ -24,15 +24,20 @@ public class AlimentosController {
         frame.getBtnNuevo().addActionListener(e -> nuevo()); 
         frame.getBtnBuscar().addActionListener(e -> buscar()); 
         frame.getBtnEditar().addActionListener(e -> editar()); 
-        frame.getBtnEditar().addActionListener(e -> eliminar()); 
+        frame.getBtnEliminar().addActionListener(e -> eliminar()); 
+        frame.getBtnRetroceder().addActionListener(e -> retroceder());
         listar();
     }
     
     public void visible(){
-        frame.setVisible(true);
-        listar();
+        frame.setVisible(true);        
     }
     
+    private void retroceder() {
+        frame.setVisible(false);  
+        controller.showPrincipalFrame();  
+    }
+     
     private void listar(){
          try {
             List<Alimento> alimentos = modelDao.getAllAlimentos(); 
