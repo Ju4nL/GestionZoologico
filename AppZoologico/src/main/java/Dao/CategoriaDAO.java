@@ -68,4 +68,21 @@ public class CategoriaDAO {
             return false;
         }
     }
+
+    public List<Categoria> getCategoriaByName(String name) {
+        List<Categoria> categorias = new ArrayList<>();
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(
+                "SELECT * FROM Categoria WHERE nombre LIKE ?")) {
+            stmt.setString(1, "%" + name + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Categoria categoria = new Categoria(rs.getInt("id"), rs.getString("nombre"), rs.getString("contacto"));
+                categorias.add(categoria);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categorias;
+    }
+
 }

@@ -54,7 +54,7 @@ public class AlimentosController {
                 model.addRow(new Object[]{alimento.getId(), alimento.getNombre(), alimento.getCategoria().getNombre()});
             }
         } catch (Exception e) {
-            frame.displayErrorMessage("Error al cargar vacantes: " + e.getMessage());
+            frame.displayErrorMessage("Error al cargar alimentos: " + e.getMessage());
         }
 
     }
@@ -85,7 +85,7 @@ public class AlimentosController {
                 model.addRow(new Object[]{alimento.getId(), alimento.getNombre(), alimento.getCategoria().getNombre()});
             }
         } catch (Exception e) {
-            frame.displayErrorMessage("Error al cargar vacantes: " + e.getMessage());
+            frame.displayErrorMessage("Error al cargar model.addRow(new Object[]{categoria.getId(), categoria.getNombre()});: " + e.getMessage());
         }
     }
 
