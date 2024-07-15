@@ -18,6 +18,10 @@ public class Suministro {
         this.alimento = alimento;
     }
 
+    public Suministro(int id, int stock, Date fechaVencimiento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getUnidadMedida() {
         return unidadMedida;
     }

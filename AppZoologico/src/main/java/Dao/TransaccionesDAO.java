@@ -1,7 +1,7 @@
 package Dao;
 
 import Model.Alimento;
-import Model.DatabaseConnection; 
+import Model.DatabaseConnection;
 import Model.Transacciones;
 import Model.Suministro;
 import java.sql.*;
@@ -12,25 +12,24 @@ public class TransaccionesDAO {
 
     public Transacciones getTransaccionById(int id) {
         Transacciones transaccion = null;
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(
-                "SELECT ht.id AS transaccion_id, ht.fechaAccion, ht.cantidad AS transaccion_cantidad, ht.accion, " +
-                "s.id AS suministro_id, a.id AS alimento_id, a.nombre AS alimento_nombre " +
-                "FROM HistorialTransacciones ht " +
-                "LEFT JOIN Suministro s ON ht.suministro_id = s.id " +
-                "LEFT JOIN Alimento a ON s.alimento_id = a.id " +
-                "WHERE ht.id = ?")) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(
+                "SELECT ht.id AS transaccion_id, ht.fechaAccion, ht.cantidad AS transaccion_cantidad, ht.accion, "
+                + "s.id AS suministro_id, a.id AS alimento_id, a.nombre AS alimento_nombre "
+                + "FROM HistorialTransacciones ht "
+                + "LEFT JOIN Suministro s ON ht.suministro_id = s.id "
+                + "LEFT JOIN Alimento a ON s.alimento_id = a.id "
+                + "WHERE ht.id = ?")) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 Alimento alimento = new Alimento(rs.getInt("alimento_id"), rs.getString("alimento_nombre"), null); // La categoría se puede obtener si es necesario
                 Suministro suministro = new Suministro(rs.getInt("suministro_id"), alimento);
                 transaccion = new Transacciones(
-                    rs.getInt("transaccion_id"),
-                    suministro,
-                    rs.getDate("fechaAccion"),
-                    rs.getInt("transaccion_cantidad"),
-                    rs.getString("accion")
+                        rs.getInt("transaccion_id"),
+                        suministro,
+                        rs.getDate("fechaAccion"),
+                        rs.getInt("transaccion_cantidad"),
+                        rs.getString("accion")
                 );
             }
         } catch (SQLException e) {
@@ -41,23 +40,22 @@ public class TransaccionesDAO {
 
     public List<Transacciones> getAllTransacciones() {
         List<Transacciones> transacciones = new ArrayList<>();
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(
-                "SELECT ht.id AS transaccion_id, ht.fechaAccion, ht.cantidad AS transaccion_cantidad, ht.accion, " +
-                "s.id AS suministro_id, a.id AS alimento_id, a.nombre AS alimento_nombre " +
-                "FROM HistorialTransacciones ht " +
-                "LEFT JOIN Suministro s ON ht.suministro_id = s.id " +
-                "LEFT JOIN Alimento a ON s.alimento_id = a.id")) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement stmt = connection.prepareStatement(
+                "SELECT ht.id AS transaccion_id, ht.fechaAccion, ht.cantidad AS transaccion_cantidad, ht.accion, "
+                + "s.id AS suministro_id, a.id AS alimento_id, a.nombre AS alimento_nombre "
+                + "FROM HistorialTransacciones ht "
+                + "LEFT JOIN Suministro s ON ht.suministro_id = s.id "
+                + "LEFT JOIN Alimento a ON s.alimento_id = a.id")) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Alimento alimento = new Alimento(rs.getInt("alimento_id"), rs.getString("alimento_nombre"), null); // La categoría se puede obtener si es necesario
                 Suministro suministro = new Suministro(rs.getInt("suministro_id"), alimento);
                 transacciones.add(new Transacciones(
-                    rs.getInt("transaccion_id"),
-                    suministro,
-                    rs.getDate("fechaAccion"),
-                    rs.getInt("transaccion_cantidad"),
-                    rs.getString("accion")
+                        rs.getInt("transaccion_id"),
+                        suministro,
+                        rs.getDate("fechaAccion"),
+                        rs.getInt("transaccion_cantidad"),
+                        rs.getString("accion")
                 ));
             }
         } catch (SQLException e) {
@@ -102,4 +100,35 @@ public class TransaccionesDAO {
             return false;
         }
     }
+    
+    public List<Transacciones> getAllTransaccionesBySuministro(String keyword) {
+    List<Transacciones> transacciones = new ArrayList<>();
+    try (Connection connection = DatabaseConnection.getConnection();
+         PreparedStatement stmt = connection.prepareStatement(
+            "SELECT ht.id AS transaccion_id, ht.fechaAccion, ht.cantidad AS transaccion_cantidad, ht.accion, " +
+            "s.id AS suministro_id, a.id AS alimento_id, a.nombre AS alimento_nombre " +
+            "FROM HistorialTransacciones ht " +
+            "LEFT JOIN Suministro s ON ht.suministro_id = s.id " +
+            "LEFT JOIN Alimento a ON s.alimento_id = a.id " +
+            "WHERE a.nombre LIKE ?")) {
+        stmt.setString(1, "%" + keyword + "%");
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Alimento alimento = new Alimento(rs.getInt("alimento_id"), rs.getString("alimento_nombre"), null); // La categoría se puede obtener si es necesario
+            Suministro suministro = new Suministro(rs.getInt("suministro_id"), alimento);
+            transacciones.add(new Transacciones(
+                rs.getInt("transaccion_id"),
+                suministro,
+                rs.getDate("fechaAccion"),
+                rs.getInt("transaccion_cantidad"),
+                rs.getString("accion")
+            ));
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return transacciones;
+}
+
+     
 }

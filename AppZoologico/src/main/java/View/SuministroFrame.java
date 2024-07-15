@@ -30,6 +30,10 @@ public class SuministroFrame extends javax.swing.JFrame {
         return btnNuevo;
     }
 
+    public JButton getBtnGestionarStock() {
+        return btnGestionarStock;
+    }
+
     public JTable getTblAnimales() {
         return tblSuministros;
     }
@@ -69,6 +73,7 @@ public class SuministroFrame extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnRetroceder = new javax.swing.JButton();
+        btnGestionarStock = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,6 +121,13 @@ public class SuministroFrame extends javax.swing.JFrame {
 
         btnRetroceder.setText("Retroceder");
 
+        btnGestionarStock.setText("Gestionar Stock");
+        btnGestionarStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionarStockActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,11 +152,13 @@ public class SuministroFrame extends javax.swing.JFrame {
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnEditar)
-                        .addGap(124, 124, 124)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGestionarStock)
+                        .addGap(34, 34, 34)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscar)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +176,9 @@ public class SuministroFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnBuscar))
-                    .addComponent(btnEditar))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEditar)
+                        .addComponent(btnGestionarStock)))
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -193,12 +209,17 @@ public class SuministroFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void btnGestionarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionarStockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGestionarStockActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGestionarStock;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JLabel jLabel1;

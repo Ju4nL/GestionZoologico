@@ -169,4 +169,18 @@ public class SuministroDAO {
         }
         return suministros;
     }
+    public boolean actualizarStockYRegistrarTransaccion(int idSuministro, int cantidad, java.util.Date fechaVencimiento, String accion) {
+        try (Connection connection = DatabaseConnection.getConnection();
+             CallableStatement stmt = connection.prepareCall("{CALL ActualizarStockYRegistrarTransaccion(?, ?, ?, ?)}")) {
+            stmt.setInt(1, idSuministro);
+            stmt.setInt(2, cantidad);
+            stmt.setDate(3, new java.sql.Date(fechaVencimiento.getTime()));
+            stmt.setString(4, accion);
+
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

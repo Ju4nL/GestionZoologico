@@ -8,6 +8,7 @@ import Model.Proveedor;
 import Model.Suministro;
 import View.SuministroFrame;
 import View.SuministroFrameForm;
+import View.SuministroFrameFormStock;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -31,6 +32,7 @@ public class SuministroController {
         frame.getBtnEditar().addActionListener(e -> visibleFormActualizar());
         frame.getBtnEliminar().addActionListener(e -> eliminar());
         frame.getBtnRetroceder().addActionListener(e -> retroceder());
+        frame.getBtnGestionarStock().addActionListener(e -> visibleFormGestionarStock());
         listar();
     }
 
@@ -140,7 +142,8 @@ public class SuministroController {
             frame.displayErrorMessage("Error al actualizar suministro: " + e.getMessage());
         }
     }
-
+    
+ 
     private void eliminar() {
         try {
             for (int row : this.frame.getTblSuministros().getSelectedRows()) {
@@ -225,5 +228,61 @@ public class SuministroController {
             frame.displayErrorMessage("Error al actualizar el suministro: " + e.getMessage());
         }
     }
+    
+    
+    private void visibleFormGestionarStock(){
+         int rowIndex = this.frame.getTblSuministros().getSelectedRow();
+        if (rowIndex == -1) {
+            frame.displayErrorMessage("Seleccione un registro");
+            return;
+        }
 
+        try {
+            int id = Integer.parseInt(frame.getTblSuministros().getValueAt(rowIndex, 0).toString());
+            Suministro suministro = modelDao.getSuministroById(id);
+
+            if (suministro == null) {
+                frame.displayErrorMessage("No se pudo encontrar el suministro seleccionado.");
+                return;
+            }
+
+            SuministroFrameFormStock formUpdate = new SuministroFrameFormStock();
+ 
+
+            formUpdate.getTxtAlimento().setText(suministro.getAlimento().getNombre());
+            formUpdate.getTxtStock().setText(String.valueOf(suministro.getStock())); 
+            formUpdate.getJdcFechaVencimiento().setDate(suministro.getFechaVencimiento()); 
+
+            formUpdate.setVisible(true);
+            frame.setVisible(false);
+
+            formUpdate.getBtnGuardar().addActionListener(e -> actualizarStock(formUpdate, id));
+            formUpdate.getBtnRetroceder().addActionListener(e -> {
+                formUpdate.setVisible(false);
+                frame.setVisible(true);
+            });
+        } catch (Exception e) {
+            frame.displayErrorMessage("Error al actualizar el suministro: " + e.getMessage());
+        }
+    }
+    
+    private void actualizarStock(SuministroFrameFormStock form,int id){
+        try { 
+            int stock = Integer.parseInt(form.getTxtStock().getText());  
+            String accion = (String ) form.getCbxAccion().getSelectedItem();
+            java.util.Date fechaVencimiento = form.getJdcFechaVencimiento().getDate(); 
+
+     
+            if (modelDao.actualizarStockYRegistrarTransaccion(id, stock, fechaVencimiento, accion)) {
+                frame.displaySucessMessage("Suministro actualizado con éxito");
+                form.setVisible(false);
+                frame.setVisible(true);
+                listar();
+            } else {
+                frame.displayErrorMessage("Error al actualizar suministro");
+            }
+        } catch (Exception e) {
+            frame.displayErrorMessage("Error al actualizar suministro: " + e.getMessage());
+        }
+    }
 }

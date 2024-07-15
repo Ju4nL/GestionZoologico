@@ -39,14 +39,14 @@ public class TransaccionesController {
 
     private void listar() {
         try {
-            List<Transacciones> Transacciones = modelDao.getAllTransacciones();
+            List<Transacciones> transacciones = modelDao.getAllTransacciones();
             DefaultTableModel model = (DefaultTableModel) frame.getTblTransacciones().getModel();
             model.setColumnIdentifiers(new Object[]{"ID", "Suministro", "Fecha accion","Cantidad","Accion"});
             TableColumnModel columnModel = frame.getTblTransacciones().getColumnModel();
             columnModel.getColumn(0).setMaxWidth(100);
 
             model.setRowCount(0);
-            for (Transacciones transaccion : Transacciones) {
+            for (Transacciones transaccion : transacciones) {
                 model.addRow(new Object[]{  transaccion.getId(), 
                                             transaccion.getSuministro().getAlimento().getNombre(), 
                                             transaccion.getFechaAccion(),
@@ -60,36 +60,33 @@ public class TransaccionesController {
     }
 
     private void buscar() {
-        /*
+        
         try {
             String name= (String) frame.getTxtBuscar().getText();
-            List<Transacciones> alimentos = modelDao.getTransaccionesByName(name);
+            List<Transacciones> transacciones = modelDao.getAllTransaccionesBySuministro(name);
             DefaultTableModel model = (DefaultTableModel) frame.getTblTransacciones().getModel();
-            model.setColumnIdentifiers(new Object[]{"ID", "Nombre", "Categoria"});
+            model.setColumnIdentifiers(new Object[]{"ID", "Suministro", "Fecha accion","Cantidad","Accion"});
             TableColumnModel columnModel = frame.getTblTransacciones().getColumnModel();
             columnModel.getColumn(0).setMaxWidth(100);
 
             model.setRowCount(0);
-            for (Transacciones alimento : alimentos) {
-                model.addRow(new Object[]{alimento.getId(), alimento.getNombre(), alimento.getCategoria().getNombre()});
+            for (Transacciones transaccion : transacciones) {
+                model.addRow(new Object[]{  transaccion.getId(), 
+                                            transaccion.getSuministro().getAlimento().getNombre(), 
+                                            transaccion.getFechaAccion(),
+                                            transaccion.getCantidad(),
+                                            transaccion.getAccion()});
             }
         } catch (Exception e) {
             frame.displayErrorMessage("Error al cargar model.addRow(new Object[]{categoria.getId(), categoria.getNombre()});: " + e.getMessage());
-        }*/
-    }
-
- 
-    private void fillComboBoxes() {
-/*
-        CategoriaDAO categoriaDao = new CategoriaDAO();
-        List<Categoria> categorias = categoriaDao.getAllCategorias();
-
-        frame.getCbxAccion().removeAllItems();
-
-        for (Categoria categoria : categorias) {
-            frame.getCbxAccion().addItem(categoria);
         }
-*/
+        
+        
+        
     }
+
+    
+ 
+    
 
 }
