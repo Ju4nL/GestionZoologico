@@ -1,7 +1,10 @@
  
 package View;
 
+import Model.Area;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
  
 public class AnimalesFrameForm extends javax.swing.JFrame {
@@ -19,6 +22,22 @@ public class AnimalesFrameForm extends javax.swing.JFrame {
         return btnGuardar;
     }
 
+    public JComboBox<String> getCbxArea() {
+        return cbxArea;
+    }
+
+    public JComboBox<String> getCbxHabitat() {
+        return cbxHabitat;
+    }
+
+    public JTextField getTxtEspecie() {
+        return txtEspecie;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+    
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -146,8 +165,6 @@ public class AnimalesFrameForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRetroceder;
-    private javax.swing.JButton btnRetroceder1;
-    private javax.swing.JButton btnRetroceder2;
     private javax.swing.JComboBox<String> cbxArea;
     private javax.swing.JComboBox<String> cbxHabitat;
     private javax.swing.JLabel jLabel1;
