@@ -1,18 +1,20 @@
 package Controller;
 
 import Dao.AlimentoDAO;
+import Model.Alimento;
 import View.AlimentosFrame;
+import java.util.List;
 
  
 public class AlimentosController {
     private PrincipalController controller;
     private AlimentosFrame frame;
-    private AlimentoDAO modeldao;
+    private AlimentoDAO modelDao;
 
     public AlimentosController(PrincipalController controller) {
         this.controller = controller;
         this.frame= new AlimentosFrame();
-        this.modeldao = new AlimentoDAO();
+        this.modelDao = new AlimentoDAO();
         initController();
     }
     
@@ -24,6 +26,14 @@ public class AlimentosController {
         listar();
     }
     private void listar(){
+         try {
+            List<Alimento> alimentos = modelDao.getAllAlimentos();
+
+            
+        } catch (Exception e) {
+            
+        }
+        
         
     }
     private void nuevo(){
