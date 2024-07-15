@@ -101,23 +101,25 @@ public class SuministroDAO {
     }
 
     public boolean updateSuministro(Suministro suministro) {
-        try (Connection connection = DatabaseConnection.getConnection(); 
-             PreparedStatement stmt = connection.prepareStatement(
-                "UPDATE Suministro SET alimento_id = ?, stock = ?, fechaVencimiento = ?, fechaIngreso = ?, cantidad = ?, unidadMedida = ?, proveedor_id = ? WHERE id = ?")) {
-            stmt.setInt(1, suministro.getAlimento().getId());
-            stmt.setInt(2, suministro.getStock());
-            stmt.setDate(3, new java.sql.Date(suministro.getFechaVencimiento().getTime()));
-            stmt.setDate(4, new java.sql.Date(suministro.getFechaIngreso().getTime()));
-            stmt.setInt(5, suministro.getCantidad());
-            stmt.setString(6, suministro.getUnidadMedida());
-            stmt.setInt(7, suministro.getProveedor().getId());
-            stmt.setInt(8, suministro.getId());
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
+    try (Connection connection = DatabaseConnection.getConnection(); 
+         PreparedStatement stmt = connection.prepareStatement(
+            "UPDATE Suministro SET alimento_id = ?, stock = ?, fechaVencimiento = ?, fechaIngreso = ?, cantidad = ?, unidadMedida = ?, proveedor_id = ? WHERE id = ?")) {
+        stmt.setInt(1, suministro.getAlimento().getId());
+        stmt.setInt(2, suministro.getStock());
+        stmt.setDate(3, new java.sql.Date(suministro.getFechaVencimiento().getTime()));
+        stmt.setDate(4, new java.sql.Date(suministro.getFechaIngreso().getTime()));
+        stmt.setInt(5, suministro.getCantidad());
+        stmt.setString(6, suministro.getUnidadMedida());
+        stmt.setInt(7, suministro.getProveedor().getId());
+        stmt.setInt(8, suministro.getId()); 
+
+        return stmt.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
     }
+}
+
 
     public boolean deleteSuministro(int id) {
         try (Connection connection = DatabaseConnection.getConnection(); 

@@ -47,7 +47,7 @@ public class SuministroController {
         try {
             List<Suministro> suministroes = modelDao.getAllSuministros();
             DefaultTableModel model = (DefaultTableModel) frame.getTblSuministros().getModel();
-            model.setColumnIdentifiers(new Object[]{"ID", "Alimento", "Stock", "Fecha vencimiento", "Fecha ingreso", "Cantidad","UnidadMedida", "Proveedor"});
+            model.setColumnIdentifiers(new Object[]{"ID", "Alimento", "Stock", "Fecha vencimiento", "Fecha ingreso", "Cantidad", "UnidadMedida", "Proveedor"});
 
             TableColumnModel columnModel = frame.getTblSuministros().getColumnModel();
             columnModel.getColumn(0).setMaxWidth(100);
@@ -79,7 +79,7 @@ public class SuministroController {
             java.util.Date fechaVencimiento = formCreate.getJdcFechaVencimiento().getDate();
             java.util.Date fechaIngreso = formCreate.getJdcFechaIngreso().getDate();
 
-            Suministro nuevoSuministro = new Suministro(0, alimento, stock, fechaVencimiento, fechaIngreso, cantidad,unidadMedida, proveedor);
+            Suministro nuevoSuministro = new Suministro(0, alimento, stock, fechaVencimiento, fechaIngreso, cantidad, unidadMedida, proveedor);
             if (modelDao.insertSuministro(nuevoSuministro)) {
                 frame.displaySucessMessage("Suministro creado con éxito");
                 formCreate.setVisible(false);
@@ -125,7 +125,9 @@ public class SuministroController {
             java.util.Date fechaVencimiento = form.getJdcFechaVencimiento().getDate();
             java.util.Date fechaIngreso = form.getJdcFechaIngreso().getDate();
 
-            Suministro suministro = new Suministro(0, alimento, stock, fechaVencimiento, fechaIngreso, cantidad,unidadMedida, proveedor);
+            // Asegurarse de que el ID se pase correctamente en el constructor
+            Suministro suministro = new Suministro(id, alimento, stock, fechaVencimiento, fechaIngreso, cantidad, unidadMedida, proveedor);
+
             if (modelDao.updateSuministro(suministro)) {
                 frame.displaySucessMessage("Suministro actualizado con éxito");
                 form.setVisible(false);
