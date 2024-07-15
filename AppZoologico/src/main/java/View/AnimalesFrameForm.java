@@ -146,6 +146,8 @@ public class AnimalesFrameForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRetroceder;
+    private javax.swing.JButton btnRetroceder1;
+    private javax.swing.JButton btnRetroceder2;
     private javax.swing.JComboBox<String> cbxArea;
     private javax.swing.JComboBox<String> cbxHabitat;
     private javax.swing.JLabel jLabel1;

@@ -30,9 +30,14 @@ public class AnimalesFrame extends javax.swing.JFrame {
         return btnNuevo;
     }
 
-    public JTable getTblAlimentos() {
-        return tblAnimales;
+    public JTable getTblAnimales() {
+        return tblAlimentos;
     }
+
+    public JButton getBtnRetroceder() {
+        return btnRetroceder;
+    }
+    
 
     public JTextField getTxtBuscar() {
         return txtBuscar;
@@ -53,12 +58,13 @@ public class AnimalesFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblAnimales = new javax.swing.JTable();
+        tblAlimentos = new javax.swing.JTable();
         btnNuevo = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
+        btnRetroceder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,7 +74,7 @@ public class AnimalesFrame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoIcon.jpg"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        tblAnimales.setModel(new javax.swing.table.DefaultTableModel(
+        tblAlimentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -79,7 +85,7 @@ public class AnimalesFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblAnimales);
+        jScrollPane1.setViewportView(tblAlimentos);
 
         btnNuevo.setText("Nuevo");
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -95,8 +101,6 @@ public class AnimalesFrame extends javax.swing.JFrame {
             }
         });
 
-        txtBuscar.setText("jTextField1");
-
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,41 +115,52 @@ public class AnimalesFrame extends javax.swing.JFrame {
             }
         });
 
+        btnRetroceder.setText("Retroceder");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnNuevo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscar)))
-                .addContainerGap())
+                        .addGap(6, 6, 6)
+                        .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEditar)
+                .addGap(124, 124, 124)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscar))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(btnRetroceder))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNuevo)
+                        .addComponent(btnEliminar))
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevo)
-                    .addComponent(btnEliminar)
+                    .addComponent(btnBuscar)
                     .addComponent(btnEditar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,10 +200,11 @@ public class AnimalesFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnRetroceder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblAnimales;
+    private javax.swing.JTable tblAlimentos;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
