@@ -2,16 +2,16 @@ package Model;
 
 import java.util.Date;
 
-public class HistorialTransacciones {
+public class Transacciones {
     private int id;
     private Suministro suministro;
     private Date fechaAccion;
     private int cantidad;
     private String accion;
 
-    public HistorialTransacciones() {}
+    public Transacciones() {}
 
-    public HistorialTransacciones(int id, Suministro suministro, Date fechaAccion, int cantidad, String accion) {
+    public Transacciones(int id, Suministro suministro, Date fechaAccion, int cantidad, String accion) {
         this.id = id;
         this.suministro = suministro;
         this.fechaAccion = fechaAccion;

@@ -3,6 +3,7 @@ package Model;
 import java.util.Date;
 
 public class Suministro {
+
     private int id;
     private Alimento alimento;
     private int stock;
@@ -11,7 +12,10 @@ public class Suministro {
     private int cantidad;
     private Proveedor proveedor;
 
-    public Suministro() {}
+    public Suministro(int id, Alimento alimento) {
+        this.id = id;
+        this.alimento = alimento;
+    }
 
     public Suministro(int id, Alimento alimento, int stock, Date fechaVencimiento, Date fechaIngreso, int cantidad, Proveedor proveedor) {
         this.id = id;
@@ -79,5 +83,4 @@ public class Suministro {
         this.proveedor = proveedor;
     }
 
-     
 }

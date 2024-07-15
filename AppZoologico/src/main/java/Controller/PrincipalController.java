@@ -9,7 +9,10 @@ public class PrincipalController {
     private AlimentosController alimentosController;
     private AnimalesController animalesController;
     private CategoriasController categoriaController;
-    private SuministroController suministroController;
+    private InventarioController inventarioController;
+    private TransaccionesController transaccionesController;
+    private ProveedoresController proveedoresController;
+    
     
     public PrincipalController(PrincipalFrame principalFrame) {
         this.principalFrame = principalFrame;
@@ -35,11 +38,25 @@ public class PrincipalController {
             categoriaController.visible();
         });
         
-        suministroController = new SuministroController(this);
-        principalFrame.getBtnSuministros().addActionListener(e ->{
-            principalFrame.setVisible(false);
-            suministroController.visible();
+        inventarioController = new InventarioController(this);
+        principalFrame.getBtnInventario().addActionListener(e -> {
+            principalFrame.setVisible(false); 
+            inventarioController.visible();
         });
+        
+        transaccionesController = new TransaccionesController(this);
+        principalFrame.getBtnTransacciones().addActionListener(e -> {
+            principalFrame.setVisible(false); 
+            transaccionesController.visible();
+        });
+        
+        proveedoresController = new ProveedoresController(this);
+        principalFrame.getBtnProveedores().addActionListener(e -> {
+            principalFrame.setVisible(false); 
+            proveedoresController.visible();
+        });
+        
+        
     }
     
     public void showPrincipalFrame() {

@@ -68,4 +68,22 @@ public class ProveedorDAO {
             return false;
         }
     }
+    
+    public List<Proveedor> getProveedorByName(String name) {
+    List<Proveedor> proveedores = new ArrayList<>();
+    try (Connection connection = DatabaseConnection.getConnection(); 
+         PreparedStatement stmt = connection.prepareStatement(
+            "SELECT * FROM Proveedor WHERE nombre LIKE ?")) {
+        stmt.setString(1, "%" + name + "%");
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            Proveedor proveedor = new Proveedor(rs.getInt("id"), rs.getString("nombre"), rs.getString("contacto"));
+            proveedores.add(proveedor);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return proveedores;
+}
+
 }
