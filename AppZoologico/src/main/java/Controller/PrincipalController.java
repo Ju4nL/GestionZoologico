@@ -8,7 +8,7 @@ public class PrincipalController {
     private PrincipalFrame principalFrame;
     private AlimentosController alimentosController;
     private AnimalesController animalesController;
-    
+    private CategoriasController categoriaController;
     
     
     public PrincipalController(PrincipalFrame principalFrame) {
@@ -27,6 +27,12 @@ public class PrincipalController {
         principalFrame.getBtnAnimales().addActionListener(e -> {
             principalFrame.setVisible(false);
             animalesController.visible();
+        });
+        
+        categoriaController = new CategoriasController(this);
+        principalFrame.getBtnCategorias().addActionListener(e -> {
+            principalFrame.setVisible(false); 
+            categoriaController.visible();
         });
     }
     

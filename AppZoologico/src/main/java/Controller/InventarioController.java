@@ -10,13 +10,13 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class AlimentosController {
+public class InventarioController {
 
     private PrincipalController controller;
     private AlimentosFrame frame;
     private AlimentoDAO modelDao;
 
-    public AlimentosController(PrincipalController controller) {
+    public InventarioController(PrincipalController controller) {
         this.controller = controller;
         this.frame = new AlimentosFrame();
         this.modelDao = new AlimentoDAO();
