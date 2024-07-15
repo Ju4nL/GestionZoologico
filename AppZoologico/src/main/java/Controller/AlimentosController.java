@@ -72,7 +72,7 @@ public class AlimentosController {
     }
 
     private void buscar() {
-
+        
     }
 
     private void editar(AlimentosFrameForm form, int id) {

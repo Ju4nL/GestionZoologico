@@ -2,8 +2,13 @@ package Controller;
 
 import Dao.AnimalDAO;
 import Dao.AreaDAO;
+import Dao.CategoriaDAO;
+import Dao.HabitatDAO;
 import Model.Animal;
 import Model.Area;
+import Model.Categoria;
+import Model.Habitat;
+import View.AlimentosFrameForm;
 import View.AnimalesFrame;
 import View.AnimalesFrameForm;
 import com.itextpdf.text.pdf.languages.ArabicLigaturizer;
@@ -68,23 +73,25 @@ public class AnimalesController {
     }
 
     private void nuevo(AnimalesFrameForm formCreate) {
-        String area = (String) formCreate.getCbxArea().getSelectedItem();
+        String nombre = formCreate.getTxtNombre().getText();
+        String especie = formCreate.getTxtEspecie().getText();
+        Area area = (Area) formCreate.getCbxArea().getSelectedItem();
+        Habitat habitalModel = (Habitat) formCreate.getCbxHabitat().getSelectedItem();
 
-        
     }
 
     private void buscar() {
-
+        
     }
 
-    private void editar() {
-
+    private void editar(AnimalesFrameForm) {
+        
     }
 
     private void eliminar() {
-        
+
     }
-    
+
     private void visibleFormCrear() {
         AnimalesFrameForm formCreate = new AnimalesFrameForm();
         formCreate.setVisible(true);
@@ -95,6 +102,21 @@ public class AnimalesController {
             frame.setVisible(true);
         });
     }
-    
 
+    private void fillComboBoxes(AnimalesFrameForm form) {
+
+        var areaDao = new AreaDAO();
+        List<Area> areas = areaDao.getAllAreas();
+        form.getCbxArea().removeAllItems();
+        for (Area area : areas) {
+            form.getCbxArea().addItem(area);
+        }
+
+        var habitatDao = new HabitatDAO();
+        List<Habitat> habitats = habitatDao.getAllHabitats();
+        form.getCbxHabitat().removeAllItems();
+        for (Habitat habitat : habitats) {
+            form.getCbxHabitat().addItem(habitat);
+        }
+    }
 }
