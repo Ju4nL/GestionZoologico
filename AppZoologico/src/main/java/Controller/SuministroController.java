@@ -47,7 +47,7 @@ public class SuministroController {
         try {
             List<Suministro> suministroes = modelDao.getAllSuministros();
             DefaultTableModel model = (DefaultTableModel) frame.getTblSuministros().getModel();
-            model.setColumnIdentifiers(new Object[]{"ID", "Alimento", "Stock", "Fecha vencimiento", "Fecha ingreso", "Cantidad", "Proveedor"});
+            model.setColumnIdentifiers(new Object[]{"ID", "Alimento", "Stock", "Fecha vencimiento", "Fecha ingreso", "Cantidad","UnidadMedida", "Proveedor"});
 
             TableColumnModel columnModel = frame.getTblSuministros().getColumnModel();
             columnModel.getColumn(0).setMaxWidth(100);
@@ -61,6 +61,7 @@ public class SuministroController {
                     suministro.getFechaVencimiento(),
                     suministro.getFechaIngreso(),
                     suministro.getCantidad(),
+                    suministro.getUnidadMedida(),
                     suministro.getProveedor().getNombre(),});
             }
         } catch (Exception e) {
@@ -73,11 +74,12 @@ public class SuministroController {
             Alimento alimento = (Alimento) formCreate.getCbxAlimento().getSelectedItem();
             int stock = Integer.parseInt(formCreate.getTxtStock().getText());;
             int cantidad = Integer.parseInt(formCreate.getTxtCantidad().getText());
+            String unidadMedida = (String) formCreate.getCbxUnidadMedida().getSelectedItem();
             Proveedor proveedor = (Proveedor) formCreate.getCbxProveedor().getSelectedItem();
             java.util.Date fechaVencimiento = formCreate.getJdcFechaVencimiento().getDate();
             java.util.Date fechaIngreso = formCreate.getJdcFechaIngreso().getDate();
 
-            Suministro nuevoSuministro = new Suministro(0, alimento, stock, fechaVencimiento, fechaIngreso, cantidad, proveedor);
+            Suministro nuevoSuministro = new Suministro(0, alimento, stock, fechaVencimiento, fechaIngreso, cantidad,unidadMedida, proveedor);
             if (modelDao.insertSuministro(nuevoSuministro)) {
                 frame.displaySucessMessage("Suministro creado con éxito");
                 formCreate.setVisible(false);
@@ -105,6 +107,7 @@ public class SuministroController {
                     suministro.getFechaVencimiento(),
                     suministro.getFechaIngreso(),
                     suministro.getCantidad(),
+                    suministro.getUnidadMedida(),
                     suministro.getProveedor().getNombre(),});
             }
         } catch (Exception e) {
@@ -117,11 +120,12 @@ public class SuministroController {
             Alimento alimento = (Alimento) form.getCbxAlimento().getSelectedItem();
             int stock = Integer.parseInt(form.getTxtStock().getText());
             int cantidad = Integer.parseInt(form.getTxtCantidad().getText());
+            String unidadMedida = (String) form.getCbxUnidadMedida().getSelectedItem();
             Proveedor proveedor = (Proveedor) form.getCbxProveedor().getSelectedItem();
             java.util.Date fechaVencimiento = form.getJdcFechaVencimiento().getDate();
             java.util.Date fechaIngreso = form.getJdcFechaIngreso().getDate();
 
-            Suministro suministro = new Suministro(id, alimento, stock, fechaVencimiento, fechaIngreso, cantidad, proveedor);
+            Suministro suministro = new Suministro(0, alimento, stock, fechaVencimiento, fechaIngreso, cantidad,unidadMedida, proveedor);
             if (modelDao.updateSuministro(suministro)) {
                 frame.displaySucessMessage("Suministro actualizado con éxito");
                 form.setVisible(false);
@@ -203,6 +207,7 @@ public class SuministroController {
             formUpdate.getTxtStock().setText(String.valueOf(suministro.getStock()));
             formUpdate.getTxtCantidad().setText(String.valueOf(suministro.getCantidad()));
             formUpdate.getCbxProveedor().setSelectedItem(suministro.getProveedor());
+            formUpdate.getCbxUnidadMedida().setSelectedItem(suministro.getUnidadMedida());
             formUpdate.getJdcFechaVencimiento().setDate(suministro.getFechaVencimiento());
             formUpdate.getJdcFechaIngreso().setDate(suministro.getFechaIngreso());
 

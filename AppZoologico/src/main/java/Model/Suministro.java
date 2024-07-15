@@ -10,6 +10,7 @@ public class Suministro {
     private Date fechaVencimiento;
     private Date fechaIngreso;
     private int cantidad;
+    private String unidadMedida;
     private Proveedor proveedor;
 
     public Suministro(int id, Alimento alimento) {
@@ -17,13 +18,22 @@ public class Suministro {
         this.alimento = alimento;
     }
 
-    public Suministro(int id, Alimento alimento, int stock, Date fechaVencimiento, Date fechaIngreso, int cantidad, Proveedor proveedor) {
+    public String getUnidadMedida() {
+        return unidadMedida;
+    }
+
+    public void setUnidadMedida(String unidadMedida) {
+        this.unidadMedida = unidadMedida;
+    }
+
+     public Suministro(int id, Alimento alimento, int stock, Date fechaVencimiento, Date fechaIngreso, int cantidad, String unidadMedida, Proveedor proveedor) {
         this.id = id;
         this.alimento = alimento;
         this.stock = stock;
         this.fechaVencimiento = fechaVencimiento;
         this.fechaIngreso = fechaIngreso;
         this.cantidad = cantidad;
+        this.unidadMedida = unidadMedida;
         this.proveedor = proveedor;
     }
 
