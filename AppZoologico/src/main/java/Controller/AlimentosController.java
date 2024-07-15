@@ -72,7 +72,21 @@ public class AlimentosController {
     }
 
     private void buscar() {
-        
+        try {
+            String name= (String) frame.getTxtBuscar().getText();
+            List<Alimento> alimentos = modelDao.getAlimentoByName(name);
+            DefaultTableModel model = (DefaultTableModel) frame.getTblAlimentos().getModel();
+            model.setColumnIdentifiers(new Object[]{"ID", "Nombre", "Categoria"});
+            TableColumnModel columnModel = frame.getTblAlimentos().getColumnModel();
+            columnModel.getColumn(0).setMaxWidth(100);
+
+            model.setRowCount(0);
+            for (Alimento alimento : alimentos) {
+                model.addRow(new Object[]{alimento.getId(), alimento.getNombre(), alimento.getCategoria().getNombre()});
+            }
+        } catch (Exception e) {
+            frame.displayErrorMessage("Error al cargar vacantes: " + e.getMessage());
+        }
     }
 
     private void editar(AlimentosFrameForm form, int id) {
@@ -143,7 +157,7 @@ public class AlimentosController {
             formUpdate.getBtnRetroceder().addActionListener(e -> {
                 formUpdate.setVisible(false);
                 frame.setVisible(true);
-            }); 
+            });
         } catch (Exception e) {
             frame.displayErrorMessage("Error al actualizar el Alimento: " + e.getMessage());
         }

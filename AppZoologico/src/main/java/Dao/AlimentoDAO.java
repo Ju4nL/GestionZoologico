@@ -83,4 +83,24 @@ public class AlimentoDAO {
             return false;
         }
     }
+    
+    public List<Alimento> getAlimentoByName(String name) {
+        List<Alimento> alimentos = new ArrayList<>();
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(
+                "SELECT a.id, a.nombre, c.id AS categoria_id, c.nombre AS categoria_nombre, c.contacto AS categoria_contacto " +
+                "FROM Alimento a " +
+                "JOIN Categoria c ON a.categoria_id = c.id " +
+                "WHERE a.nombre LIKE ?")) {
+            stmt.setString(1, "%" + name + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Categoria categoria = new Categoria(rs.getInt("categoria_id"), rs.getString("categoria_nombre"), rs.getString("categoria_contacto"));
+                alimentos.add(new Alimento(rs.getInt("id"), rs.getString("nombre"), categoria));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return alimentos;
+    }
 }
