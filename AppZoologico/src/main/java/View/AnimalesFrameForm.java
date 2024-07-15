@@ -2,6 +2,7 @@
 package View;
 
 import Model.Area;
+import Model.Habitat;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -22,11 +23,11 @@ public class AnimalesFrameForm extends javax.swing.JFrame {
         return btnGuardar;
     }
 
-    public JComboBox<String> getCbxArea() {
+    public JComboBox<Area> getCbxArea() {
         return cbxArea;
     }
 
-    public JComboBox<String> getCbxHabitat() {
+    public JComboBox<Habitat> getCbxHabitat() {
         return cbxHabitat;
     }
 
@@ -77,11 +78,7 @@ public class AnimalesFrameForm extends javax.swing.JFrame {
 
         jLabel5.setText("Habitat");
 
-        cbxHabitat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sabana Africana", "Selva Amazónica", "Montañas Rocosas" }));
-
         jLabel6.setText("Area");
-
-        cbxArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sector Costa", "Sector Sierra", "Sector Selva" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -165,8 +162,8 @@ public class AnimalesFrameForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRetroceder;
-    private javax.swing.JComboBox<String> cbxArea;
-    private javax.swing.JComboBox<String> cbxHabitat;
+    private javax.swing.JComboBox<Area> cbxArea;
+    private javax.swing.JComboBox<Habitat> cbxHabitat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
