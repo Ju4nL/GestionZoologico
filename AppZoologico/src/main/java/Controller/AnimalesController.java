@@ -1,8 +1,12 @@
 package Controller;
 
 import Dao.AnimalDAO;
+import Dao.AreaDAO;
 import Model.Animal;
+import Model.Area;
 import View.AnimalesFrame;
+import View.AnimalesFrameForm;
+import com.itextpdf.text.pdf.languages.ArabicLigaturizer;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -21,7 +25,7 @@ public class AnimalesController {
     }
 
     private void initController() {
-        frame.getBtnNuevo().addActionListener(e -> nuevo());
+        frame.getBtnNuevo().addActionListener(e -> visibleFormCrear());
         frame.getBtnBuscar().addActionListener(e -> buscar());
         frame.getBtnEditar().addActionListener(e -> editar());
         frame.getBtnEditar().addActionListener(e -> eliminar());
@@ -63,8 +67,10 @@ public class AnimalesController {
         }
     }
 
-    private void nuevo() {
+    private void nuevo(AnimalesFrameForm formCreate) {
+        String area = (String) formCreate.getCbxArea().getSelectedItem();
 
+        
     }
 
     private void buscar() {
@@ -76,7 +82,19 @@ public class AnimalesController {
     }
 
     private void eliminar() {
-
+        
     }
+    
+    private void visibleFormCrear() {
+        AnimalesFrameForm formCreate = new AnimalesFrameForm();
+        formCreate.setVisible(true);
+        frame.setVisible(false);
+        formCreate.getBtnGuardar().addActionListener(e -> nuevo(formCreate));
+        formCreate.getBtnRetroceder().addActionListener(e -> {
+            formCreate.setVisible(false);
+            frame.setVisible(true);
+        });
+    }
+    
 
 }
