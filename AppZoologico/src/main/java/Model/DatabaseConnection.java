@@ -5,9 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
+    /*
     private static final String URL = "jdbc:mysql://localhost:3306/DbZoologico";
     private static final String USER = "tuUsuario";
-    private static final String PASSWORD = "tuContraseña";
+    private static final String PASSWORD = "tuContraseña";*/
+    
+    private static final String URL = "jdbc:mysql://db-projects.cn62022agaif.us-east-2.rds.amazonaws.com:3306/DbZoologico";
+    private static final String USER = "root";
+    private static final String PASSWORD = "bjNCKeZEamuJIGdNAmPrjgwvaYkTkriA";
 
     static {
         try {
