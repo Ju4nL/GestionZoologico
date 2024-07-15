@@ -1,12 +1,38 @@
  
 package View;
 
+import javax.swing.JButton;
+
  
 public class PrincipalFrame extends javax.swing.JFrame {
 
      
     public PrincipalFrame() {
         initComponents();
+    }
+
+    public JButton getBtnAlimentos() {
+        return btnAlimentos;
+    }
+
+    public JButton getBtnAnimales() {
+        return btnAnimales;
+    }
+
+    public JButton getBtnCategorias() {
+        return btnCategorias;
+    }
+
+    public JButton getBtnInventario() {
+        return btnInventario;
+    }
+
+    public JButton getBtnSuministros() {
+        return btnSuministros;
+    }
+
+    public JButton getBtnTransacciones() {
+        return btnTransacciones;
     }
 
    

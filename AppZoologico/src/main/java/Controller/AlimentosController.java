@@ -4,6 +4,8 @@ import Dao.AlimentoDAO;
 import Model.Alimento;
 import View.AlimentosFrame;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
  
 public class AlimentosController {
@@ -25,13 +27,20 @@ public class AlimentosController {
         frame.getBtnEditar().addActionListener(e -> eliminar()); 
         listar();
     }
-    private void listar(){
+    public void listar(){
          try {
-            List<Alimento> alimentos = modelDao.getAllAlimentos();
+            List<Alimento> alimentos = modelDao.getAllAlimentos(); 
+            DefaultTableModel model = (DefaultTableModel) frame.getTblAlimentos().getModel();
+            model.setColumnIdentifiers(new Object[]{"ID", "Nombre", "Categoria"});
+            TableColumnModel columnModel = frame.getTblAlimentos().getColumnModel();
+            columnModel.getColumn(0).setMaxWidth(100);
 
-            
+            model.setRowCount(0);
+            for (Alimento alimento : alimentos) {
+                model.addRow(new Object[]{alimento.getId(),alimento.getNombre(),alimento.getCategoria().getNombre()});
+            }
         } catch (Exception e) {
-            
+            //frame.displayErrorMessage("Error al cargar vacantes: " + e.getMessage());
         }
         
         
