@@ -2,6 +2,7 @@
 package View;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -39,6 +40,14 @@ public class AlimentosFrame extends javax.swing.JFrame {
 
     public JTextField getTxtBuscar() {
         return txtBuscar;
+    }
+    
+    public void displayErrorMessage(String message){
+        JOptionPane.showMessageDialog(this, message, "Error Login", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void displaySucessMessage(String message){
+        JOptionPane.showMessageDialog(this, message);
     }
     
    

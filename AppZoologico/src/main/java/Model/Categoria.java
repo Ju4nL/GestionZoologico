@@ -37,4 +37,26 @@ public class Categoria {
     public void setContacto(String contacto) {
         this.contacto = contacto;
     }
+    
+    @Override
+    public String toString() {
+        return nombre;  
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Categoria categoria = (Categoria) obj;
+        return id == categoria.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
 }

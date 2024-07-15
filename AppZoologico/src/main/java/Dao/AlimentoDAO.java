@@ -9,17 +9,18 @@ import java.util.List;
 
 public class AlimentoDAO {
 
-    private CategoriaDAO categoriaDAO = new CategoriaDAO();
-
-    public Alimento getAlimentoById(int id) {
+     public Alimento getAlimentoById(int id) {
         Alimento alimento = null;
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alimento WHERE id = ?")) {
+             PreparedStatement stmt = connection.prepareStatement(
+                "SELECT a.id, a.nombre, c.id AS categoria_id, c.nombre AS categoria_nombre, c.contacto AS categoria_contacto " +
+                "FROM Alimento a " +
+                "JOIN Categoria c ON a.categoria_id = c.id " +
+                "WHERE a.id = ?")) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                int categoriaId = rs.getInt("categoria_id");
-                Categoria categoria = categoriaDAO.getCategoriaById(categoriaId);
+                Categoria categoria = new Categoria(rs.getInt("categoria_id"), rs.getString("categoria_nombre"), rs.getString("categoria_contacto"));
                 alimento = new Alimento(rs.getInt("id"), rs.getString("nombre"), categoria);
             }
         } catch (SQLException e) {
@@ -31,11 +32,13 @@ public class AlimentoDAO {
     public List<Alimento> getAllAlimentos() {
         List<Alimento> alimentos = new ArrayList<>();
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alimento")) {
+             PreparedStatement stmt = connection.prepareStatement(
+                "SELECT a.id, a.nombre, c.id AS categoria_id, c.nombre AS categoria_nombre, c.contacto AS categoria_contacto " +
+                "FROM Alimento a " +
+                "JOIN Categoria c ON a.categoria_id = c.id")) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                int categoriaId = rs.getInt("categoria_id");
-                Categoria categoria = categoriaDAO.getCategoriaById(categoriaId);
+                Categoria categoria = new Categoria(rs.getInt("categoria_id"), rs.getString("categoria_nombre"), rs.getString("categoria_contacto"));
                 alimentos.add(new Alimento(rs.getInt("id"), rs.getString("nombre"), categoria));
             }
         } catch (SQLException e) {
@@ -43,6 +46,7 @@ public class AlimentoDAO {
         }
         return alimentos;
     }
+
 
     public boolean insertAlimento(Alimento alimento) {
         try (Connection connection = DatabaseConnection.getConnection();
