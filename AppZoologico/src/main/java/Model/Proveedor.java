@@ -37,4 +37,26 @@ public class Proveedor {
     public void setContacto(String contacto) {
         this.contacto = contacto;
     }
+    
+    @Override
+    public String toString() {
+        return nombre;  
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Proveedor proveedor = (Proveedor) obj;
+        return id == proveedor.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
 }

@@ -59,4 +59,6 @@ public class Area {
     public int hashCode() {
         return Integer.hashCode(id);
     }
+    
+    
 }
