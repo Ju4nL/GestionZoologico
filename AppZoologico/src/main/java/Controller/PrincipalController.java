@@ -12,7 +12,7 @@ public class PrincipalController {
     private InventarioController inventarioController;
     private TransaccionesController transaccionesController;
     private ProveedoresController proveedoresController;
-    
+    private SuministroController suministroController;
     
     public PrincipalController(PrincipalFrame principalFrame) {
         this.principalFrame = principalFrame;
@@ -56,7 +56,12 @@ public class PrincipalController {
             proveedoresController.visible();
         });
         
-        
+        suministroController = new SuministroController(this);
+        principalFrame.getBtnSuministros().addActionListener(e -> {
+            principalFrame.setVisible(false); 
+            suministroController.visible();
+        });
+
     }
     
     public void showPrincipalFrame() {
