@@ -27,7 +27,13 @@ public class AlimentosController {
         frame.getBtnEditar().addActionListener(e -> eliminar()); 
         listar();
     }
-    public void listar(){
+    
+    public void visible(){
+        frame.setVisible(true);
+        listar();
+    }
+    
+    private void listar(){
          try {
             List<Alimento> alimentos = modelDao.getAllAlimentos(); 
             DefaultTableModel model = (DefaultTableModel) frame.getTblAlimentos().getModel();

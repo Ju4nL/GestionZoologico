@@ -13,7 +13,8 @@ public class test {
         UIManager.put("Button.arc", 25);
 
         PrincipalFrame frame = new PrincipalFrame(); 
-        //PrincipalController controller = new PrincipalController( frame);  
+        PrincipalController controller = new PrincipalController( frame); 
+        frame.setController(controller);
         frame.setVisible(true);
 
     }

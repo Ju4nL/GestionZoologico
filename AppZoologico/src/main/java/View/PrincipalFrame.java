@@ -1,14 +1,18 @@
  
 package View;
 
+import Controller.PrincipalController;
 import javax.swing.JButton;
 
  
 public class PrincipalFrame extends javax.swing.JFrame {
-
+    private PrincipalController principalController;
      
     public PrincipalFrame() {
         initComponents();
+    }
+    public void setController(PrincipalController principalController){
+        this.principalController=principalController;  
     }
 
     public JButton getBtnAlimentos() {
@@ -50,6 +54,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
